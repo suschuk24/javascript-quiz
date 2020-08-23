@@ -7,6 +7,9 @@ var btnContainerEl = document.querySelector(".btn-container");
 var displayEl = document.querySelector(".display");
 var questionEl = document.querySelector(".question");
 var questionLabelEl = document.querySelector(".question-label");
+var FinalScoreEl = document.querySelector(".final-score");
+var submitEL = document.querySelector(".submit");
+var highScoresListEL = document.querySelector(".high-scores-list");
 
 // button variables
 var startBtnEl  = document.querySelector("#start-btn");
@@ -20,10 +23,11 @@ var answerButton3El = document.getElementById("btn-3");
 var answerButton4El = document.getElementById("btn-4");
 
 // time and score variables 
+// var placeScore = document.getElementById("score-total")
 var scoreEl = document.querySelector("#score");
 var timeEl = document.querySelector("#time");
 var seconds = 74
-var score = 1
+var score = 0
 
 // questions array
 var currentQuestion = 0
@@ -116,7 +120,7 @@ function questionList() {
 function checkAnswer(selection) {
     var correct = questions[currentQuestion].correctAnswer;
     if (selection === correct ) {
-        scoreEl.textContent = score++;
+        scoreEl.textContent = (1 + score++);
         var choice = document.getElementById("answer");
         var displayText = document.createTextNode("Correct");
         choice.appendChild(displayText);
@@ -136,7 +140,7 @@ function checkAnswer(selection) {
 };
 
 function enterScore() {
-    clearInterval(timer)
+    
     submitScoreEl.classList.remove("hide");
     questionLabelEl.classList.add("hide");
     btnContainerEl.classList.add("hide");
@@ -146,24 +150,57 @@ function enterScore() {
 };
 
 function makeHighScore () {
-    var finalScore = scoreEl;
-    
-}
+    console.log(typeof score)
+    var finalScore = (" " + score);
+    FinalScoreEl.textContent = finalScore;
+
+    //get highscores from localStorage; returns empty array if none present
+    // couldn't figure this part out on my own, had help during office hours over the weekend from Cameron, Jeff and the TA's
+    var highScores = JSON.parse(localStorage.getItem("highScores"));
+        if(!highScores){
+            highScores = [];
+        }
+    //submit highscores to local storage and add them to highScores already stored.
+    submitEL.addEventListener("click", function (event) {
+        event.preventDefault();
+        var initials = document.querySelector("#user-name").value
+        
+        var latestScore = {
+            score: finalScore,
+            initials: initials
+        }
+        highScores.push(latestScore);
+
+        localStorage.setItem("highScores", JSON.stringify(highScores));
+        makeScoreList();
+    });
+};
+
+
+// create score list item
+function makeScoreList () {
+    var highScores = JSON.parse(localStorage.getItem("highScores"));
+    for (let i = 0; i < highScores.length; i++) {
+        var ListEl = document.createElement("li");
+        ListEl.className = "score-list";
+        ListEl.textContent = highScores[i].initials + "- " + highScores[i].score;
+        highScoresListEL.appendChild(ListEl);
+    }
+    scoreScreen()
+};
 
 function scoreScreen () {
+    // clearInterval(timer);
+    timeEl.textContent = "Game Over"
     scoreScreenEl.classList.remove("hide");
     submitScoreEl.classList.add("hide");
-    timeEl.textContent = "Game Over"
+    
 };
 
-function homeScreen () {
-    mainContentEl.classList.remove("hide");
-    scoreScreenEl.classList.add("hide");
-
-};
 
 // event listenrs to "step" HTML
 startBtnEl.addEventListener("click", startQuiz)
+// veent listeners for correct answers
 answerButton1El.addEventListener("click", function () {
     checkAnswer(0);
 });
@@ -177,8 +214,9 @@ answerButton4El.addEventListener("click", function () {
     checkAnswer(3);
 });
 scoreButtonEl.addEventListener("click", function () {
-    scoreScreen()
+    enterScore()
 });
 returnButtonEl.addEventListener("click", function () {
     location.reload ()
 });
+
