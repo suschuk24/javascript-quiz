@@ -1,29 +1,32 @@
 //query selectors for page variable interaction
 
 var mainContentEl = document.querySelector(".main-content");
-var startScreenEl = document.querySelector(".start-screen");
-var timeEl = document.querySelector("#time");
-var startBtnEl  = document.querySelector("#start-btn");
+var submitScoreEl = document.querySelector(".enter-score");
+var scoreScreenEl = document.querySelector(".high-scores")
 var btnContainerEl = document.querySelector(".btn-container");
 var displayEl = document.querySelector(".display");
 var questionEl = document.querySelector(".question");
 var questionLabelEl = document.querySelector(".question-label");
 
+// button variables
+var startBtnEl  = document.querySelector("#start-btn");
+var scoreButtonEl = document.querySelector("#submit-btn");
+var returnButtonEl = document.querySelector("#return-btn");
+
 //element ID variables
+var answerButton1El = document.getElementById("btn-1");
+var answerButton2El = document.getElementById("btn-2");
+var answerButton3El = document.getElementById("btn-3");
+var answerButton4El = document.getElementById("btn-4");
 
-
-var answerBtn1El = document.getElementById("btn-1");
-var answerBtn2El = document.getElementById("btn-2");
-var answerBtn3El = document.getElementById("btn-3");
-var answerBtn4El = document.getElementById("btn-4");
-// var score = setInterval(math.add++)
-
-var correct = 10
+// time and score variables 
+var scoreEl = document.querySelector("#score");
+var timeEl = document.querySelector("#time");
 var timer = 74
-var score = 0
+var score = 1
 
+// questions array
 var currentQuestion = 0
-
 var questions = [
     {
         question: "Commonly used data types DO Not Include:",
@@ -52,16 +55,14 @@ var questions = [
     },
 ];
 
+// answers array
+var answerButtons = [];
+answerButtons.push(answerButton1El);
+answerButtons.push(answerButton2El);
+answerButtons.push(answerButton3El);
+answerButtons.push(answerButton4El);
 
-
-// console.log(questions)
-
-var answerBtns = [];
-answerBtns.push(answerBtn1El);
-answerBtns.push(answerBtn2El);
-answerBtns.push(answerBtn3El);
-answerBtns.push(answerBtn4El);
-
+// start quiz
 function startQuiz() {
         console.log("starting game")
         timeLimit ();
@@ -70,8 +71,7 @@ function startQuiz() {
     
 };
 
-
-
+// timer function
 function timeLimit() {
     
     setInterval(function () {
@@ -80,68 +80,96 @@ function timeLimit() {
         }
         else {
           clearInterval(timer);
-          timeEl.textContent = "";
-          //jump to enter high score info function
+          timeEl.textContent = "0";
+          enterScore()
         } 
       }, 1000);
-    }
+    };
 
-    // debugger
+// change css elements as needed to display correct HTML
 function hideEl() {
     mainContentEl.classList.add("hide");
     questionLabelEl.classList.remove("hide");
     btnContainerEl.classList.remove("hide");
     displayEl.classList.remove("hide");
-}
+};
+
 // Question List
-
-
 function questionList() {
+    if (currentQuestion >= questions.length) {
+        clearInterval(timer);
+        console.log("Game Over");
+        enterScore();
+    }
     for (var i = 0; i < questions.length; i++) {
         questionEl.textContent = questions[currentQuestion].question;
     } 
-    for (var i = 0; i < answerBtns.length; i++) {
-        answerBtns[i].textContent = questions[currentQuestion].answers[i];
+    for (var i = 0; i < answerButtons.length; i++) {
+        answerButtons[i].textContent = questions[currentQuestion].answers[i];
     }
-}
+};
 
+// check to see if correct answer was selected
 function checkAnswer(selection) {
-    if( selection === questions[currentQuestion].correctAnswer) {
-        currentQuestion++
-        console.log("question number", currentQuestion)
-        score++
-        console.log("score", score)
-        console.log("correct, next question")
-        nextQuestion()
+    var correct = questions[currentQuestion].correctAnswer;
+    if (selection === correct ) {
+        scoreEl.textContent = score++;
+        currentQuestion++;
+
     } else {
          timer -= 10;
-         nextQuestion()
          console.log("incorrect, 10 seconds deducteed, next question")
     } 
-}
+    
+    nextQuestion()
+    if (currentQuestion >= questions.length) {
+        clearInterval(timer);
+
+    }
+};
+
 function nextQuestion() {
     questionList()
-    for (var i = 0; i < answerBtns.length; i++) {
-        answerBtns[i].textContent = questions[currentQuestion].answers[i];
+    for (var i = 0; i < answerButtons.length; i++) {
+        answerButtons[i].textContent = questions[currentQuestion].answers[i];
     } 
-}
+};
 function enterScore() {
+    submitScoreEl.classList.remove("hide");
+    questionLabelEl.classList.add("hide");
+    btnContainerEl.classList.add("hide");
+    displayEl.classList.add("hide");
 
-}
+};
 
+function scoreScreen () {
+    scoreScreenEl.classList.remove("hide");
+    submitScoreEl.classList.add("hide");
+};
 
+function homeScreen () {
+    mainContentEl.classList.remove("hide");
+    scoreScreenEl.classList.add("hide");
+
+};
+
+// event listenrs to "step" HTML
 startBtnEl.addEventListener("click", startQuiz)
-
-
-answerBtn1El.addEventListener("click", function () {
+answerButton1El.addEventListener("click", function () {
     checkAnswer(0);
-})
-answerBtn2El.addEventListener("click", function () {
+});
+answerButton2El.addEventListener("click", function () {
     checkAnswer(1);
-})
-answerBtn3El.addEventListener("click", function () {
+});
+answerButton3El.addEventListener("click", function () {
     checkAnswer(2);
-})
-answerBtn4El.addEventListener("click", function () {
+});
+answerButton4El.addEventListener("click", function () {
     checkAnswer(3);
-})
+});
+scoreButtonEl.addEventListener("click", function () {
+    scoreScreen()
+});
+returnButtonEl.addEventListener("click", function () {
+    homeScreen()
+});
