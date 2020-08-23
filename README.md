@@ -3,6 +3,8 @@
 ## Overview
 
 Welcome to my JavaSctipt quiz! When you click to start the quiz, a timer will start, and you will be asked a series of questions. If you choose the correct answer, you will be rewarded with one score point. Alternatively, if you chose the incorrect answer, your time limit will be deducted by 10 seconds. A new question will appear once an answer is clicked. The quiz ends when either time runs out, or all questions have been answered. You will then be given the option to svae your initials and score to the high score leaderboard. 
+
+
 Please advise, I am having an issue where it creates two scores at the end of the quiz. I believe the issue is somewhere to do with the quiz function logic, but I haven't been able to find it yet.
 
 ## Links to Deployed site and GitHub Repository
