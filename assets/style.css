@@ -35,7 +35,7 @@ main {
     box-shadow: 0 0 30px;
     
 }
-#start-btn {
+#start-btn #submit-btn  #return-btn{
     background: purple;
     /* replace with reference tag */
     color: white;
@@ -46,17 +46,7 @@ main {
     font-size: 2em;
     border-radius: 20px;
 }
-#submit-btn {
-    background: purple;
-    /* replace with reference tag */
-    color: white;
-    margin: 20px;
-    padding: 3px 10px;
-    width: 40%;
-    text-align: center;
-    font-size: 2em;
-    border-radius: 20px;
-}
+
 .start-screen {
     text-align: center;
 
