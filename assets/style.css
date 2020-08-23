@@ -14,16 +14,41 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    margin: 10px 50px;
+    margin: 30px 50px;
+    background: purple;
+    color: white;
+    padding: 0 30px;
+    font-weight: lighter;
+    border-radius: 20px;
 }
 
 main {
     display: flex;
     justify-content: center;
 }
-
+.main-content {
+    /* change to variable color */
+    border: solid 3px purple;
+    border-radius: 20px; 
+    margin: 0 30px;
+    padding: 30px;
+    box-shadow: 0 0 30px;
+    
+}
+#start-btn {
+    background: purple;
+    /* replace with reference tag */
+    color: white;
+    margin: 20px;
+    padding: 3px 10px;
+    width: 40%;
+    text-align: center;
+    font-size: 2em;
+    border-radius: 20px;
+}
 .start-screen {
     text-align: center;
+
 }
 
 .hide {
@@ -35,9 +60,14 @@ main {
     /* replace with reference tag */
     color: white;
     margin: 20px;
-    padding: 3px 10px;
+    padding: 10px 10px;
     width: 40%;
     text-align: center;
     font-size: 2em;
     border-radius: 20px;
+}
+
+.question {
+    margin: 20px;
+
 }

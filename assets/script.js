@@ -117,27 +117,42 @@ function checkAnswer(selection) {
     var correct = questions[currentQuestion].correctAnswer;
     if (selection === correct ) {
         scoreEl.textContent = score++;
-        currentQuestion++;
-
+        var choice = document.getElementById("answer");
+        var displayText = document.createTextNode("Correct");
+        choice.appendChild(displayText);
     } else {
-         seconds -= 10;
-         console.log("incorrect, 10 seconds deducteed, try again")
+        var choice = document.getElementById("answer");
+        var displayText = document.createTextNode("Incorrect...");
+        choice.appendChild(displayText);
+        seconds -= 10;
+        console.log("incorrect, 10 seconds deducteed, try again");
+
     } 
-    nextQuestion ()
+    setTimeout(function() {
+        choice.removeChild(displayText);
+        currentQuestion++;
+        nextQuestion();
+    }, 500);
 };
 
 function enterScore() {
+    clearInterval(timer)
     submitScoreEl.classList.remove("hide");
     questionLabelEl.classList.add("hide");
     btnContainerEl.classList.add("hide");
     displayEl.classList.add("hide");
+    makeHighScore()
 
 };
+
+function makeHighScore () {
+    var finalScore = scoreEl;
+    
+}
 
 function scoreScreen () {
     scoreScreenEl.classList.remove("hide");
     submitScoreEl.classList.add("hide");
-    clearInterval(timer)
     timeEl.textContent = "Game Over"
 };
 
