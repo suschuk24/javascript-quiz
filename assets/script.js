@@ -22,7 +22,7 @@ var answerButton4El = document.getElementById("btn-4");
 // time and score variables 
 var scoreEl = document.querySelector("#score");
 var timeEl = document.querySelector("#time");
-var timer = 74
+var seconds = 74
 var score = 1
 
 // questions array
@@ -65,22 +65,21 @@ answerButtons.push(answerButton4El);
 // start quiz
 function startQuiz() {
         console.log("starting game")
-        timeLimit ();
         hideEl ();
-        questionList ();
-    
+        nextQuestion();
+        timeLimit ();
 };
 
 // timer function
 function timeLimit() {
     
-    setInterval(function () {
-        if (timer >= 0){
-          timeEl.textContent = timer--;
+var timer =  setInterval(function () {
+        if (seconds >= 0 && currentQuestion < questions.length){
+          timeEl.textContent = seconds--;
         }
         else {
           clearInterval(timer);
-          timeEl.textContent = "0";
+          timeEl.textContent = "Game Over";
           enterScore()
         } 
       }, 1000);
@@ -94,20 +93,23 @@ function hideEl() {
     displayEl.classList.remove("hide");
 };
 
-// Question List
-function questionList() {
-    if (currentQuestion >= questions.length) {
-        clearInterval(timer);
-        console.log("Game Over");
+// move to next question or end game
+function nextQuestion() {
+    if (currentQuestion <= questions.length) {
+        questionList();
+    } else {
         enterScore();
     }
-    for (var i = 0; i < questions.length; i++) {
-        questionEl.textContent = questions[currentQuestion].question;
-    } 
+};
+
+// Question List
+function questionList() {
+        questionEl.textContent = questions[currentQuestion].question; 
     for (var i = 0; i < answerButtons.length; i++) {
         answerButtons[i].textContent = questions[currentQuestion].answers[i];
     }
 };
+
 
 // check to see if correct answer was selected
 function checkAnswer(selection) {
@@ -117,23 +119,18 @@ function checkAnswer(selection) {
         currentQuestion++;
 
     } else {
-         timer -= 10;
-         console.log("incorrect, 10 seconds deducteed, next question")
+         seconds -= 10;
+         console.log("incorrect, 10 seconds deducteed, try again")
     } 
-    
-    nextQuestion()
-    if (currentQuestion >= questions.length) {
-        clearInterval(timer);
-
-    }
+    questionList ()
 };
 
-function nextQuestion() {
-    questionList()
-    for (var i = 0; i < answerButtons.length; i++) {
-        answerButtons[i].textContent = questions[currentQuestion].answers[i];
-    } 
-};
+// function nextQuestion() {
+//     questionList()
+//     // for (var i = 0; i < answerButtons.length; i++) {
+//     //     answerButtons[i].textContent = questions[currentQuestion].answers[i];
+//     // } 
+// };
 function enterScore() {
     submitScoreEl.classList.remove("hide");
     questionLabelEl.classList.add("hide");
@@ -145,13 +142,15 @@ function enterScore() {
 function scoreScreen () {
     scoreScreenEl.classList.remove("hide");
     submitScoreEl.classList.add("hide");
+    clearInterval(timer)
+    timeEl.textContent = "Game Over"
 };
 
-function homeScreen () {
-    mainContentEl.classList.remove("hide");
-    scoreScreenEl.classList.add("hide");
+// function homeScreen () {
+//     mainContentEl.classList.remove("hide");
+//     scoreScreenEl.classList.add("hide");
 
-};
+// };
 
 // event listenrs to "step" HTML
 startBtnEl.addEventListener("click", startQuiz)
@@ -170,6 +169,6 @@ answerButton4El.addEventListener("click", function () {
 scoreButtonEl.addEventListener("click", function () {
     scoreScreen()
 });
-returnButtonEl.addEventListener("click", function () {
-    homeScreen()
-});
+// returnButtonEl.addEventListener("click", function () {
+//     homeScreen()
+// });
