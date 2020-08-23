@@ -68,9 +68,7 @@ answerButtons.push(answerButton4El);
 
 // start quiz
 function startQuiz() {
-        console.log("starting game")
         hideEl ();
-        // nextQuestion();
         timeLimit ();
         questionList()
 };
@@ -139,6 +137,7 @@ function checkAnswer(selection) {
     }, 500);
 };
 
+// exit quiz and transition CSS
 function enterScore() {
     
     submitScoreEl.classList.remove("hide");
@@ -149,8 +148,8 @@ function enterScore() {
 
 };
 
-function makeHighScore () {
-    console.log(typeof score)
+// create high score value, ask user to input initials 
+function makeHighScore() {
     var finalScore = (" " + score);
     FinalScoreEl.textContent = finalScore;
 
