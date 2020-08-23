@@ -17,33 +17,33 @@ Please advise, I am having an issue where it creates two scores at the end of th
 
 ### Start of Page
 
-![Landing Page](https://github.com/suschuk24/password-generator/blob/master/images/landingpage-ss.jpg)
+![Landing Page](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/home-page.jpg)
 
 ### First Question
 
-![First Question](https://github.com/suschuk24/password-generator/blob/master/images/char-length-ss.jpg)
+![First Question](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/question-1.jpg)
 
 ### Second Question
 
-![Second Question](https://github.com/suschuk24/password-generator/blob/master/images/char-length-invalid-ss.jpg)
+![Second Question](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/question-2.jpg)
 
 ### Third Question
 
-![Third Question](https://github.com/suschuk24/password-generator/blob/master/images/char-uppercase-ss.jpg)
+![Third Question](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/question-3.jpg)
 
 ### Fourth Question
 
-![Fourth Question](https://github.com/suschuk24/password-generator/blob/master/images/char-lowercase-ss.jpg)
+![Fourth Question](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/question-4.jpg)
 
 ### Fifth Question
 
-![Last Question](https://github.com/suschuk24/password-generator/blob/master/images/char-numbers-ss.jpg)
+![Last Question](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/question-5.jpg)
 
 ### Enter Your Info
 
-![enter your info](https://github.com/suschuk24/password-generator/blob/master/images/char-special-ss.jpg)
+![enter your info](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/submit-score.jpg)
 
 ### High Score Leaderboard
 
-![high score leaderboard](https://github.com/suschuk24/password-generator/blob/master/images/char-no-select-ss.jpg)
+![high score leaderboard](https://github.com/suschuk24/javascript-quiz/blob/master/assets/images/score-leaderboard.jpg)
 
