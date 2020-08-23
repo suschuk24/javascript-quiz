@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Quiz Time!</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <header>
+        <h2>View High Scores</h2>
+        <h2>Score: <span id="score">0</span></h2>
+        <h3>Time Remaining: <span id="time">75</span></h3>
+    </header>
+    <main>
+        <div class="main-content">
+            <div class="start-screen" >
+                <h1>Coding Quiz Challenge</h1>
+            </div>
+            <div>
+                <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            </div>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+        <div class="quiz-box">
+            <h2 class="question-label hide">Question: <span class="question"></span> </h2>
+            <div class="btn-container hide">
+                <div class="answer-container">
+                    <button id="btn-1" class="btn"></button>
+                </div>
+                <div class="answer-container">
+                    <button id="btn-2" class="btn"></button>
+                </div>
+                <div class="answer-container">
+                    <button id="btn-3" class="btn"></button>
+                </div>
+                <div class="answer-container">
+                    <button id="btn-4" class="btn"></button>
+                </div>
+            </div>
+            <div class="display hide">
+                <h4 id="answer"></h4>
+            </div>
+        </div>
+    </main>
+    <script src=./assets/script.js></script>
+</body>
+</html>

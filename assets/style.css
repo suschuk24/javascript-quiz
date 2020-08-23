@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    /* font-size: 62.5%; */
+    --primary: white;
+    --secondary: black;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 50px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.start-screen {
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.answer-container button {
+    background: purple;
+    /* replace with reference tag */
+    color: white;
+    margin: 20px;
+    padding: 3px 10px;
+    width: 40%;
+    text-align: center;
+    font-size: 2em;
+    border-radius: 20px;
+}
