@@ -11,7 +11,7 @@ Please advise, I am having an issue where it creates two scores at the end of th
 
 [Click Here to Visit GitHub Repository](https://github.com/suschuk24/javascript-quiz)
 
-[Click Here to Visit the Deployed Site](https://suschuk24.github.io/javascript-quiz/)
+[Click Here to Visit the Deployed Site](https://suschuk24.github.io/javascript-quiz/index.html)
 
 ## Below are screenshots of the different steps you might encounter depending on your inputs
 
